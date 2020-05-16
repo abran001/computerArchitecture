@@ -1,0 +1,101 @@
+#click assemble first then click load in LMC computer. click run to test the program
+#menu loop 
+Menu	IN
+	STO	ch
+	SUB	one #input 1
+	BRZ	choice1 #Runs countdown alogrithrim
+	LDA	ch
+	SUB	two #input 2
+	BRZ	choice2 #Runs Triangle number sequence alogrithrim 
+	LDA	ch
+	SUB	three #input 3
+	BRZ	choice3 #Runs Fibunacci sequence alogrithrim
+	LDA	ch
+	SUB	four #input 4
+	BRZ	choice4 #Quit the programs
+
+choice1	#program code 1 = Countdown##########################
+	IN #input a number
+	STO	num #store number 
+LOOP 	LDA	num #load number into the loop
+	OUT #emit number
+	SUB	ONE #subtract ONE
+	STO	num #Store number
+	BRZ	ENDLOOP #branch if zero, new loop
+	BR	LOOP #break 
+ENDLOOP	LDA	num #load number
+	SUB	num #subtract number
+	OUT	#display the result
+	BR	Menu #back to menu loop
+
+choice2 #program code 2 = Triangle number####################	
+	IN
+	STO	VALUE #stores a number for value
+	LDA	ZERO #loads zero
+	STO	TRINUM #store number as trinum 
+	STO	NUM # stores another number as num
+LOOP2	LDA	TRINUM #new loop and loads the trinum
+	SUB	VALUE #subtracts the value
+	BRP	ENDLOOP2 #breaks only if the number is positive
+	LDA	NUM #loads num
+	ADD	TWO #adds the number stored as two
+	STO	NUM #stores the number
+	ADD	TRINUM #adds trinum
+	STO	TRINUM #stores trinum
+	BR	LOOP2 #break the loop
+ENDLOOP2	LDA	VALUE #new loop, load value
+	SUB	TRINUM #subtract trinum
+	BRZ	EQUAL #break if zero eqaul
+	LDA	ZERO #load zero
+	OUT
+	BR	DONE
+EQUAL	LDA	NUM
+	OUT #displays the result
+DONE	BR	Menu
+
+choice3 #program code 3 = fibunacci sequence#################	
+	IN
+        STO	N #stores number for n
+LOOP3   LDA	A #loads number for a in the loop
+        SUB	N #subtract number n
+        BRP	ENDLOOP3 
+        LDA	A #load number a
+        OUT
+        LDA	B #load number b
+        ADD	A #add a
+        STO	ACCUMULATOR #store accumulator
+        LDA	B #load b
+        STO	A #store a
+       	LDA	ACCUMULATOR #load accumulator
+        STO	B #store b
+        BR	LOOP3 #break loop
+ENDLOOP3	BR	loop3	#new loop 	
+#####reset inputs
+loop3	LDA	one
+	STO	A
+	STO	B
+	STO	ACCUMULATOR
+	LDA	ZERO
+	STO	N
+	BR	Menu
+	
+choice4	HLT	#quits the programs
+
+#################       varibles         ####################
+ch	DAT	0 #menu
+one	DAT	1 #menu
+two	DAT	2 #menu
+three	DAT	3 #menu
+four	DAT	4 #Menu choice to quit the program
+num	DAT	0 #countdown
+ONE	DAT	1 #countdown
+TWO	DAT	1 #triangle number
+VALUE	DAT	000 #traingle number
+TRINUM	DAT	000 #triangle number
+NUM	DAT	001 #triangle number
+ZERO	DAT	000 #triangle number
+A       DAT	1 #fibunacci sequance
+B       DAT	1 #fibunacci sequence
+N       DAT	0 #fibunacci sequence 
+ACCUMULATOR	DAT	1 #fibunacci sequence
+

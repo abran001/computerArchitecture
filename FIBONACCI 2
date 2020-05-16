@@ -1,0 +1,28 @@
+	IN
+	STO	n     #number of terms
+	LDA	one
+	OUT
+
+loop	LDA	fibbinaci     #THE MAIN LOOP THAT PRINTS FIBONACCI NUMBERS
+	STO	temp2
+	ADD	temp
+	STO	fibbinaci
+	LDA	temp2
+	STO	temp
+	BR	check
+
+check	LDA	n         #LOOP TO KEEP A TRACK OF NUMBER OF TERMS
+	BRZ	halt
+	SUB	one
+	STO 	n
+	BRZ	halt
+	LDA	fibbunaci
+	OUT
+	BR   	loop
+
+halt 	HLT        
+n    	DAT  	1
+fibbinaci  	DAT  	1
+temp  	DAT  	1
+temp2 	DAT  	1
+one   	DAT  	0

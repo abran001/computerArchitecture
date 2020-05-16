@@ -1,0 +1,20 @@
+	IN
+        STO	N
+LOOP    LDA	A
+        SUB	N
+        BRP	ENDLOOP
+        LDA	A
+        OUT
+        LDA	B
+        ADD	A
+        STO	ACC
+        LDA	B
+        STO	A
+       	LDA	ACC
+        STO	B
+        BR	LOOP
+ENDLOOP HLT
+A       DAT	1
+B       DAT	1
+N       DAT	0100
+ACC	DAT	100
